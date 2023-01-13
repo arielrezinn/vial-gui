@@ -23,13 +23,17 @@ After many hours, I'm able to successfully run `fbs run` and `fbs freeze` on my 
    # Providing an incorrect openssl version forces a proper openssl version to be downloaded and linked during the build
    export PYTHON_BUILD_HOMEBREW_OPENSSL_FORMULA=openssl@1.0
 
-   # Build CPython with Framework support on OS X, not doing this results in an error similar to: "OSError: Python library not found: .Python, Python, libpython3.6m.dylib, libpython3.6.dylib". However, exporting this [can cause issues building some distros](https://github.com/pyenv/pyenv/wiki#how-to-build-cpython-with-framework-support-on-os-x), so do it at your own risk.
+   # Build CPython with Framework support on OS X
+   # Not doing this results in an error similar to: "OSError: Python library not found: .Python, Python, libpython3.6m.dylib, libpython3.6.dylib".
+   # However, exporting this [can cause issues building some distros](https://github.com/pyenv/pyenv/wiki#how-to-build-cpython-with-framework-support-on-os-x), so do it at your own risk.
    export PYTHON_CONFIGURE_OPTS="--enable-framework"
 
    # Install Python 3.6
    pyenv86 install --patch 3.6.15 <<(curl -sSL https://raw.githubusercontent.com/pyenv/pyenv/master/plugins/python-build/share/python-build/patches/3.6.15/Python-3.6.15/0008-bpo-45405-Prevent-internal-configure-error-when-runn.patch\?full_index\=1)
 
-   # Note: the build will (hopefully) succeed and give the following warning: "WARNING: The Python readline extension was not compiled. Missing the GNU readline lib?" This doesn't have any ill-effect for our purposes, and can be ignored.
+   # Note: the build will (hopefully) succeed and give the following warning:
+   # "WARNING: The Python readline extension was not compiled. Missing the GNU readline lib?" 
+   # This doesn't have any ill-effect for our purposes, and can be ignored.
    ```
 1. Set your local python version with `pyenv local 3.6.15`
 1. Create a virtual environment
